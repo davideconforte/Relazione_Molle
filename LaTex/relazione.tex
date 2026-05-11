@@ -181,5 +181,145 @@ T = \frac{2\pi}{\omega} = 2\pi \sqrt{\frac{m}{k}}
 $$
 Ma in questo caso la massa è tutta la massa appesa alla molla, inclusa la massa del supporto.
 
+\subsection{Massa efficace statica}
+Per calcolare la $m{eff.statica}$ immaginiamo di dividere la molla in N parti uguale lunghezza.
+La lunghezza di tali sezioni sarà $a = l_0 / N$ e la massa pari a $\mu = m_m / N$.
+La costante elastica della molla completa è k, quindi, considerando tale molla come una serie di N molle,
+la costante elastica k di ognuna di queste parti della molla sarà data da:
+$$
+k = \frac{1}{\sum\frac{1}{k}} = \frac{k}{N}
+$$
+Il primo elemento della molla sentirà il peso di tutte le N-1 molle e si allungherà di:
+$$
+\Delta x_1 = \frac{(N-1)\mu g}{k} 
+$$
+La seconda sentirà il peso delle N-2 molle e si allungherà di:
+$$
+\Delta x_2 = \frac{(N-2)\mu g}{k} 
+$$
+L'allungamento totale sarà dato dalla somma di tutti gli allungamenti:
+$$
+\Delta x = \sum_{i=1}^{N-1} \Delta x_i = \sum_{i=1}^{N-1} \frac{(N-i)\mu g}{k} \implies \Delta x = \frac{m_m g}{2} \frac{1}{k}
+$$
+Ovvero la molla si è allungata come se fosse stata appesa una massa:
+$$
+m_{eff.statica} = \frac{m_m}{2}
+$$
+
+\subsection{Massa efficace dinamica}
+Nella misura tramite metodo dinamico non possiamo trascurare la massa della molla in relazione alla stima del
+periodo di oscillazione.
+Dovremo valutare il contributo di $m_m$ anche in questo caso come $m_{eff.dinamica}$
+
+Calcoliamo la variazione dell'energia cinetica $dK$ della molla a causa della stessa massa $dm$ di un 
+elemento di lunghezza $dx$ che si muove con una velocità istantanea $v$ durante il moto armonico della molla:
+$$
+dK = \frac{1}{2}dmv^2
+$$
+Poiché vale $dm = m_m \frac{dx}{l}$, mentre la velocità alla distanza x sarà legata alla velocità all'estremo
+$l$ della molla V da:
+$$
+v = \frac{x}{l}V
+$$
+Possiamo quindi scrivere:
+$$
+dK = \frac{1}{2}(\frac{x}{l}V)^2 \frac{m_m}{l}dx
+$$
+L'energia cinetica totale della molla in oscillazione si ottiene integrando da 0 alla lunghezza della molla $l$:
+$$
+K = \frac{1}{2}(\frac{V}{l})^2 \frac{m_m}{l} \int_{0}^{l} x^2 dx
+$$
+Che vale:
+$$
+K = \frac{1}{2}(\frac{V}{l})^2 \frac{m_m}{l} \frac{l^3}{3} = \frac{1}{2}V^2 \frac{m_m}{3}
+$$
+Sommando anche la massa appesa alla molla (anch'essa in movimento con velocità $V$) abbiamo un'energia
+cinetica totale:
+$$
+K = \frac{1}{2}V^2 (m+\frac{m_m}{3})
+$$
+Abbiamo quindi che la massa effettiva della molla da sommare alla massa appesa è nel caso dinamico pari a:
+$$
+m_{eff.dinamica} = \frac{m_m}{3}
+$$
+
+\subsection{Metodo dinamico con attriti}
+Nel caso in cui non si possano trascurare gli attriti, dobbiamo inserire un termine proporzionale al
+$dx/dt$ che dipenderà daòòa viscosità del mezzo (e da eventuali attriti meccanici nella molla stessa).
+Consideriamo per semplicità l'equazione omogenea (abbiamo visto la soluzione della non omogenea):
+$$
+m\ddot{x} + C\dot{x} + kx = 0
+$$
+Ovvero:
+$$
+\ddot{x} + \frac{C}{m} \dot{x} + \frac{k}{m} x = 0
+$$
+Con condizioni iniziali:
+$$
+x(t=0) = x_0 \quad \text{e} \quad \dot{x}(t=0) = 0
+$$
+E con, per comodità:
+$$
+2\gamma = \frac{C}{m} \quad \text{e} \quad \omega_0 = \sqrt{\frac{k}{m}}
+$$
+Ovvero:
+$$
+\ddot{x} + 2\gamma \dot{x} + \omega_0^2 x = 0
+$$
+Che è un'equazione differenziale lineare di secondo ordine a coefficienti costanti.
+
+Dalla teoria delle equazioni differenziali ricavo il moto descritto dalla legge:
+$$
+x(t) = A e^{\gamma t} \cos(\sqrt{\omega_0^2 - \gamma^2 t} + \phi) \quad \text{per} \quad \gamma < \omega_0
+$$
+Ottengo quindi un moto oscillatorio smorzato, con A e $\phi$ che dipendono dalle condizioni iniziali.
+Notiamo che la pulsazione misurata è influenzata dall'attrito:
+$$
+\omega_0 \to \omega_0 - \frac{C}{2m}
+$$
+
+\newpage
+\section{Apparato sperimentale}
+\textbf{Strumenti di misura}
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{lr} % l = left (allineato a sinistra), c = center (centrato)
+        \toprule
+        \textbf{Strumento} & \textbf{Risoluzione} \\
+        \midrule
+        Metro a nastro      & $1$ mm               \\
+        Cronometro digitale & $0.01$ s             \\
+        Bilancia analitica    & $0.01$ g              \\
+        \bottomrule
+    \end{tabular}
+\end{table}\\
+\textbf{Componenti del sistema fisico}
+\begin{table}[htbp]
+    \centering
+    \footnotesize
+    \vspace{8pt} % Spazio aggiuntivo tra didascalia e tabella
+    \begin{tabular}{lll}
+        \toprule
+        \textbf{Elemento} & \textbf{Proprietà} & \textbf{Valore Nominale} \\
+        \midrule
+        Massa oscillante (Piattello) & Massa ($M_p$)     & 20.10 g                \\
+        Massa appesa                 & Massa ($M_i$)  & variabile (4.97 - 49.99)g \\
+        \addlinespace
+        Molla      & Massa ($M_m$)     &  29.96 g                  \\
+                                 & Lunghezza ($l_M$) & variabile (19.9 - 65.3) cm           \\
+        \addlinespace
+        Stativo                  & Supporto rigido   & ---                    \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\section{Procedura sperimentale}
+\subsection{Misure preliminari}
+\begin{itemize}
+    \item Misura della massa della molla $M_m$, del piattello $M_p$ e delle masse $M_i$.
+    \item Misura della lunghezza della molla a riposo $l_0$.
+\end{itemize}
+
+\subsection{Set-up dell'apparato}
 
 \end{document}
